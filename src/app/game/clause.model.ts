@@ -10,8 +10,8 @@ export class Atom {
     return this.id;
   }
 
-  informCaluse() {
-    this.clause.setAtom(this.id, GameColor.WINNING);
+  informCaluse(color: GameColor) {
+    this.clause.setAtom(this.id, color);
   }
 
 }

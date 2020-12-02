@@ -119,7 +119,7 @@ export class GameParser {
     '-2 -7 10 0\n' +
     '3 -8 -10 0\n' +
     '-3 -4 -8 0\n' +
-    '-6 -9 10 0\n' ;
+    '-6 -9 10 -9 10 0\n' ;
   clauses: Clause[];
   atoms: Atom[] ;
 

@@ -7,17 +7,18 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
 import {environment} from '../environments/environment';
-import {AppRoutingModule} from './app.routing.modul';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import { SelectGameComponent } from './select-game/select-game.component';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
-import { GameComponent } from './game/game.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {AppRoutingModule} from './app-routing.module';
+import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
+import {SelectGameComponent} from './select-game/select-game.component';
+import {GameComponent} from './game/game.component';
 
 export function firebaseAppNameFactory() {
   return `game`;
@@ -27,11 +28,12 @@ export function firebaseAppNameFactory() {
   declarations: [
     AppComponent,
     LoginSignupComponent,
-    SelectGameComponent,
-    GameComponent
+    GameComponent,
+    SelectGameComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatPasswordStrengthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -57,14 +59,14 @@ export function firebaseAppNameFactory() {
         guardProtectedRoutesUntilEmailIsVerified: true,
         enableEmailVerification: true, // default: true
       }),
-    AppRoutingModule,
+
     MatListModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIconModule,
     MatSlideToggleModule,
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
