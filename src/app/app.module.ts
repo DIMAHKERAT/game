@@ -19,6 +19,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {SelectGameComponent} from './select-game/select-game.component';
 import {GameComponent} from './game/game.component';
+import {MainMenuComponent} from './main-menu.compnent/main-menu.component';
+import {GameService} from './game/services/game.service';
 
 export function firebaseAppNameFactory() {
   return `game`;
@@ -29,7 +31,8 @@ export function firebaseAppNameFactory() {
     AppComponent,
     LoginSignupComponent,
     GameComponent,
-    SelectGameComponent
+    SelectGameComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,6 @@ export function firebaseAppNameFactory() {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-
 
     NgxAuthFirebaseUIModule.forRoot(environment.firebaseConfig,
       () => 'firebaseAppNameFactory',
@@ -66,7 +68,7 @@ export function firebaseAppNameFactory() {
     MatIconModule,
     MatSlideToggleModule,
   ],
-  providers: [AngularFireAuthGuard],
+  providers: [AngularFireAuthGuard, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

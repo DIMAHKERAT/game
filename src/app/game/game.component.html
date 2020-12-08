@@ -1,0 +1,13 @@
+<div class="fixedtop">hi</div>
+<div class="mat-slide-toggle-thumb"></div>
+<table class="center" >
+  <tbody >
+  <tr *ngFor="let i = index  of [].constructor(MAX_M)">
+    <td *ngFor="let j = index of  [].constructor(MAX_N)">
+      <span class="material-icons" [ngStyle]="{'color':form[i][j].color}"  (click)="informGame(i,j)" > {{icons[form[i][j].getId()]}} </span>
+    </td>
+
+  </tr>
+
+  </tbody>
+</table>

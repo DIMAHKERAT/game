@@ -1,0 +1,13 @@
+<button class="btn btn-success">New Recipe</button>
+
+<ngx-auth-firebaseui-login
+  titleText="LOGIN TO YOUR ACCOUNT"
+
+  providers=""
+  messageOnAuthSuccess="success login"
+  messageOnAuthError="email/password is wrong! please try again"
+  *ngIf="viewLogin"
+  (onCreateAccountRequested)="changeView()"
+  (onSuccess)="onSuccessLogin($event)"
+></ngx-auth-firebaseui-login>
+<ngx-auth-firebaseui-register *ngIf="!viewLogin"  (onSuccess)="onSuccessLogin($event)"(onLoginRequested)="changeView()" ></ngx-auth-firebaseui-register>

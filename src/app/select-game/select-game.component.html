@@ -1,0 +1,9 @@
+
+<button mat-button color="primary">Primary</button>
+<!--*ngIf="this.loadingSubject$ | async"  -->
+<mat-nav-list  >
+  <mat-list-item *ngFor="let  game of GAMES" (click)="goToGame(game)">
+    <a matLine >{{ game.level }}  {{ game.name }}</a>
+  </mat-list-item>
+</mat-nav-list>
+
