@@ -5,19 +5,25 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
-import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { LoginSignupComponent } from './login-signup.component/login-signup.component';
 import {environment} from '../environments/environment';
-import {AppRoutingModule} from './app.routing.modul';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import { SelectGameComponent } from './select-game/select-game.component';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
-import { GameComponent } from './game/game.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {AppRoutingModule} from './app-routing.module';
+import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
+import {SelectGameComponent} from './select-game.component/select-game.component';
+import {GameComponent} from './game/game.component';
+import {MainMenuComponent} from './main-menu.component/main-menu.component';
+import {GameService} from './game/services/game.service';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import { GameEndComponent } from './game-end/game-end.component';
 
 export function firebaseAppNameFactory() {
   return `game`;
@@ -27,17 +33,19 @@ export function firebaseAppNameFactory() {
   declarations: [
     AppComponent,
     LoginSignupComponent,
+    GameComponent,
     SelectGameComponent,
-    GameComponent
+    MainMenuComponent,
+    GameEndComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatPasswordStrengthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-
 
     NgxAuthFirebaseUIModule.forRoot(environment.firebaseConfig,
       () => 'firebaseAppNameFactory',
@@ -57,14 +65,16 @@ export function firebaseAppNameFactory() {
         guardProtectedRoutesUntilEmailIsVerified: true,
         enableEmailVerification: true, // default: true
       }),
-    AppRoutingModule,
+
     MatListModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatCardModule,
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

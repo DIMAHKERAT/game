@@ -1,0 +1,34 @@
+<div class="center">
+  <mat-card>
+    <nav class="fixed-nav-bar">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle (click)="setColor('w')" >WINNING COLOR</mat-button-toggle>
+        <mat-button-toggle (click)="setColor('l')">LOSING COLOR</mat-button-toggle>
+      </mat-button-toggle-group>
+    </nav>
+    <mat-slide-toggle
+      color="accent"
+      [checked]="propagate"
+      (change)="setPropagate( $event )">
+      Propagate
+    </mat-slide-toggle>
+    <mat-list>
+      <mat-list-item>Score: {{score}}</mat-list-item>
+    </mat-list>
+
+  </mat-card>
+
+</div>
+
+
+<table class="center" cellspacing="0" cellpadding="0">
+  <tbody >
+  <tr *ngFor="let i = index  of [].constructor(MAX_ROWS)">
+    <td  [ngClass]="[getClass(i,j)]" *ngFor="let j = index of  [].constructor(MAX_COLUMN)">
+     <span class="material-icons" [ngStyle]="{'color':form[i][j].color, 'background-color': form[i][j].backcolor}"  (click)="informGame(i,j)" > {{icons[form[i][j].getId()]}} </span>
+    </td>
+
+  </tr>
+
+  </tbody>
+</table>
