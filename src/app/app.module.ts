@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
-import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { LoginSignupComponent } from './login-signup.component/login-signup.component';
 import {environment} from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -17,10 +17,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {AppRoutingModule} from './app-routing.module';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
-import {SelectGameComponent} from './select-game/select-game.component';
+import {SelectGameComponent} from './select-game.component/select-game.component';
 import {GameComponent} from './game/game.component';
-import {MainMenuComponent} from './main-menu.compnent/main-menu.component';
+import {MainMenuComponent} from './main-menu.component/main-menu.component';
 import {GameService} from './game/services/game.service';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import { GameEndComponent } from './game-end/game-end.component';
 
 export function firebaseAppNameFactory() {
   return `game`;
@@ -32,7 +35,8 @@ export function firebaseAppNameFactory() {
     LoginSignupComponent,
     GameComponent,
     SelectGameComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    GameEndComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,8 @@ export function firebaseAppNameFactory() {
     MatProgressSpinnerModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatCardModule,
   ],
   providers: [AngularFireAuthGuard, GameService],
   bootstrap: [AppComponent]
