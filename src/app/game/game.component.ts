@@ -3,9 +3,11 @@ import {Component, OnInit} from '@angular/core';
 import {Atom, Clause} from './models/clause.model';
 import {GameParser} from './models/game.parser';
 import {GameIcons} from './enums/gameIcons';
-import {GameColor} from './enums/gameColor';
+// import {GameColor} from './enums/gameColor';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GameService} from './services/game.service';
+import {Timer} from './models/timer.model';
+import {GameColorService} from './services/game-color.service';
 
 @Component({
   selector: 'app-game',
@@ -22,16 +24,18 @@ export class GameComponent implements OnInit {
   public MAX_ROWS = 0;
   private ATOUMS_COUNT: number;
   public propagate: boolean;
-  public color: GameColor;
-
-  constructor(private gameService: GameService, private route: ActivatedRoute, private router: Router) {
+  public color: string;
+  public timer: Timer;
+  constructor(private gameService: GameService, public gameColor: GameColorService, private route: ActivatedRoute, private router: Router) {
 
 
   }
 
   ngOnInit(): void {
+    this.timer = new Timer(0, 0, 0);
+    this.timer.startTimer();
     this.route.params.subscribe(params => {
-      const gameParser = new GameParser(this.gameService.getGame(params.id));
+      const gameParser = new GameParser(this.gameColor, this.gameService.getGame(params.id));
       this.propagate = false;
       this.color = null;
       this.clauses = gameParser.getClauses();
@@ -65,19 +69,20 @@ export class GameComponent implements OnInit {
       }
       for (const clause of this.clauses){
          if (!clause.isOk(this.form[i][j].getId(), this.color)){
-           this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), GameColor.ERRORR));
-           this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), GameColor.ERRORR));
+           this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), this.gameColor.condColor));
+           this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), this.gameColor.condColor));
            rebackcoler = false;
            break;
          }
       }
       if (rebackcoler){
-        this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), GameColor.NNN));
-        this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), GameColor.NNN));
+        this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), this.gameColor.neutBColor));
+        this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), this.gameColor.neutBColor));
       }
       this.score = 0;
       this.clauses.forEach(e => this.score += +e.getScore());
       this.checkSatisfied();
+      this.clauses.forEach(e => e.setBackcolor());
     }
   }
   public checkSatisfied() {
@@ -86,7 +91,7 @@ export class GameComponent implements OnInit {
         return;
       }
     }
-    this.router.navigate(['/game-end']);
+    this.router.navigate(['/game-end', this.score,  this.timer.total]);
   }
   setPropagate(e) {
     this.propagate = e.checked;
@@ -126,12 +131,11 @@ export class GameComponent implements OnInit {
 
   setColor(e: string) {
     if (e === 'w') {
-      this.color = GameColor.WINNING;
+      this.color = this.gameColor.winColor;
     } else {
-      this.color = GameColor.LOSING;
+      this.color = this.gameColor.losColor;
     }
   }
-
 
   getClass(i: number, j: number) {
     let s = '';

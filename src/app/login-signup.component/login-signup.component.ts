@@ -19,8 +19,6 @@ export class LoginSignupComponent implements OnInit {
     this.viewLogin = !this.viewLogin;
   }
   onSuccessLogin($event) {
-    console.log($event);
-    // this.router.navigate(['game']);
     this.router.navigate(['']);
   }
 

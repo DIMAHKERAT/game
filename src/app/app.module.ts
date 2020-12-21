@@ -24,6 +24,11 @@ import {GameService} from './game/services/game.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card';
 import { GameEndComponent } from './game-end/game-end.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { SettingsComponent } from './settings/settings.component';
+import {GameColorService} from './game/services/game-color.service';
+
 
 export function firebaseAppNameFactory() {
   return `game`;
@@ -36,7 +41,8 @@ export function firebaseAppNameFactory() {
     GameComponent,
     SelectGameComponent,
     MainMenuComponent,
-    GameEndComponent
+    GameEndComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,7 @@ export function firebaseAppNameFactory() {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    ColorPickerModule,
 
     NgxAuthFirebaseUIModule.forRoot(environment.firebaseConfig,
       () => 'firebaseAppNameFactory',
@@ -73,8 +80,9 @@ export function firebaseAppNameFactory() {
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatFormFieldModule,
   ],
-  providers: [AngularFireAuthGuard, GameService],
+  providers: [AngularFireAuthGuard, GameService, GameColorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

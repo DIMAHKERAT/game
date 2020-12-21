@@ -7,20 +7,21 @@ import {GameComponent} from './game/game.component';
 import {MainMenuComponent} from './main-menu.component/main-menu.component';
 import {SelectGameComponent} from './select-game.component/select-game.component';
 import {GameEndComponent} from './game-end/game-end.component';
+import {SettingsComponent} from './settings/settings.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'games', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   {
-    path: 'game/:id',
-    component: GameComponent,
+    path: 'main',
+    component: MainMenuComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'main',
-    component: MainMenuComponent,
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
@@ -31,7 +32,14 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'game-end',
+    path: 'game/:id',
+    component: GameComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+
+  {
+    path: 'game-end/:score/:time',
     component: GameEndComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
@@ -41,7 +49,7 @@ const routes: Routes = [
     component: LoginSignupComponent,
   },
   {
-    path: 'loggedout',
+    path: 'loggout',
     component: LoginSignupComponent,
   },
 ];

@@ -1,10 +1,11 @@
 table {
   border: none;
+  border-collapse: collapse;
   /*margin:1em auto;*/
 }
 td {
-  height:30px;
-  width:30px;
+  /*height:30px;*/
+  /*width:30px;*/
   /*border:1px solid;*/
   text-align:center;
 }
@@ -18,37 +19,7 @@ td {
 .mat-card{
   background-color: rgba(255, 255, 255, 1);
 }
-/*td:first-child {*/
-/*  border-left:solid;*/
-/*}*/
-/*td:nth-child(3n) {*/
-/*  border-right:solid ;*/
-/*}*/
 
-/*td:nth-child(4) {*/
-/*  border-left:solid;*/
-/*}*/
-/*td:nth-child(7) {*/
-/*  border-left:solid;*/
-/*}*/
-/*td:nth-child(n) {*/
-/*  border-top:solid;*/
-/*  border-bottom:solid ;*/
-/*}*/
-
-
-
-/*tr:first-child {*/
-/*  border-top:solid;*/
-/*}*/
-/*tr:nth-child(n) td {*/
-/*  border-top:solid;*/
-/*  border-right:solid ;*/
-/*  border-bottom:solid ;*/
-/*}*/
-/*tr:nth-child(3n) td {*/
-/*  border-bottom:solid ;*/
-/*}*/
 
 
 .border-left {

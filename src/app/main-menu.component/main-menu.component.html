@@ -1,2 +1,42 @@
+<div class="home-container">
+  <div class="home-content">
 
-<button class="btn btn-success">New Recipe</button>
+    <div class="mat-h1">
+      <h1>THE BOX GAME</h1>
+    </div>
+    <div>
+      <a mat-fab color="primary"  routerLink="/games">
+        <mat-icon>play_arrow</mat-icon>
+      </a>
+    </div>
+
+    <div>
+      <a mat-fab color="primary"  >
+        <mat-icon>group_work</mat-icon>
+      </a>
+    </div>
+
+    <div >
+      <a mat-fab color="primary" routerLink="/settings">
+                <mat-icon>settings</mat-icon>
+      </a>
+    </div>
+
+    <div>
+      <a mat-fab color="primary"  >
+        <mat-icon> live_help</mat-icon>
+      </a>
+    </div>
+    <div >
+      <a mat-fab color="primary" routerLink="/loggout">
+        <mat-icon>exit_to_app</mat-icon>
+      </a>
+    </div>
+  </div>
+
+</div>
+<!--<div class="center">-->
+<!--  <li *ngFor="let  game of GAMES">-->
+<!--    <button mat-button (click)="goToGame(game)"><h3>{{ game.level }}  {{ game.name }}</h3></button>-->
+<!--  </li>-->
+<!--</div>-->

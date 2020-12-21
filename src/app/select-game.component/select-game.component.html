@@ -1,8 +1,11 @@
 <div class="center">
-  <mat-nav-list>
-    <mat-list-item *ngFor="let  game of GAMES" (click)="goToGame(game)">
-      <a matLine >{{ game.level }}  {{ game.name }}</a>
-    </mat-list-item>
-  </mat-nav-list>
+  <li *ngFor="let  game of GAMES">
+    <button mat-button (click)="goToGame(game)"><h3>{{ game.level }}  {{ game.name }}</h3></button>
+  </li>
+<!--  <mat-nav-list>-->
+<!--    <mat-list-item *ngFor="let  game of GAMES" (click)="goToGame(game)">-->
+<!--      <a matLine >{{ game.level }}  {{ game.name }}</a>-->
+<!--    </mat-list-item>-->
+<!--  </mat-nav-list>-->
 </div>
 

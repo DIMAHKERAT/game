@@ -1,8 +1,8 @@
 export enum GameColor {
-  WINNING = 'Red',
-  LOSING = 'Blue',
-  NEUTRAL = 'Black',
-  ERRORR =  'gray',
-  NNN = 'White'
-
+  RED = 'Red',
+  BLUE = 'Blue',
+  BLACK = 'Black',
+  GRAY =  'gray',
+  WHITE = 'white',
+  YELLOW = 'yello'
 }
