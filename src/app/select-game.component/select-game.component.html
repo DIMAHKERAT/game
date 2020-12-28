@@ -1,11 +1,11 @@
 <div class="center">
+  <div style="position: sticky;  top: 0;"  >
+    <button style="width: 100%;" mat-raised-button color="accent" routerLink="/main"><mat-icon>home</mat-icon>  HOME</button>
+  </div>
   <li *ngFor="let  game of GAMES">
-    <button mat-button (click)="goToGame(game)"><h3>{{ game.level }}  {{ game.name }}</h3></button>
+    <h3 [ngStyle]="{'color': getScore(game) !== 0 ?  '#CEF0D4' : '#000000' }" (click)="goToGame(game)">
+      {{ game.name }}, Score: {{ getScore(game) }}, Time: {{ getTime(game) }}</h3>
+    <hr>
   </li>
-<!--  <mat-nav-list>-->
-<!--    <mat-list-item *ngFor="let  game of GAMES" (click)="goToGame(game)">-->
-<!--      <a matLine >{{ game.level }}  {{ game.name }}</a>-->
-<!--    </mat-list-item>-->
-<!--  </mat-nav-list>-->
 </div>
 

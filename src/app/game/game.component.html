@@ -1,34 +1,53 @@
-<div class="center">
-  <mat-card>
-    <nav class="fixed-nav-bar">
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle (click)="setColor('w')" >WINNING COLOR</mat-button-toggle>
-        <mat-button-toggle (click)="setColor('l')">LOSING COLOR</mat-button-toggle>
+
+<div class="container">
+
+<!--  <div class="table-container">-->
+    <table class="center" cellspacing="0" cellpadding="0" style="  height: 100%; width: 100%;">
+      <tbody >
+      <tr *ngFor="let i = index  of [].constructor(MAX_ROWS)">
+        <td  [ngClass]="[getClass(i,j)]" *ngFor="let j = index of  [].constructor(MAX_COLUMN)">
+          <span class="material-icons" [ngStyle]="{'color':form[i][j].color, 'background-color': form[i][j].backcolor}" (click)="informGame(i,j)">{{icons[form[i][j].getId()]}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  <div cdkAriaLive="second-col">
+    <div class="button-container">
+      <div style="text-align: center;">
+      <h2>{{timer.time}}</h2>
+      <h2>Score: {{score}}</h2>
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" style="flex-direction: column">
+        <mat-button-toggle (click)="setColor('w')" [ngStyle]="{'color': gameColor.winColor, 'font-family': 'Rouge Script', 'cursive': 'True', 'font-size': '15px', 'font-weight': 'normal',  'text-align': 'center','text-shadow': '1px 1px 2px' }">WINNING</mat-button-toggle>
+        <mat-button-toggle (click)="setColor('l')" [ngStyle]="{'color': gameColor.losColor, 'font-family': 'Rouge Script', 'cursive': 'True', 'font-size': '15px', 'font-weight': 'normal',  'text-align': 'center','text-shadow': '1px 1px 2px' }">LOSING</mat-button-toggle>
       </mat-button-toggle-group>
-    </nav>
-    <mat-slide-toggle
-      color="accent"
-      [checked]="propagate"
-      (change)="setPropagate( $event )">
-      Propagate
-    </mat-slide-toggle>
-    <mat-list>
-      <mat-list-item>Score: {{score}}</mat-list-item>
-    </mat-list>
-    <p>{{timer.time}}</p>
-  </mat-card>
+      <mat-slide-toggle
+        color="accent"
+        [ngStyle]="{'color':'#CEF0D4'}"
+        [checked]="propagate"
+        (change)="setPropagate( $event )">
+        Propagate
+      </mat-slide-toggle>
+      </div>
+    </div>
+  </div>
 
 </div>
+<br>
+<br>
+<br>
+<div >
+  <div >
+    <button mat-raised-button color="accent" (click)="ngOnInit()"><mat-icon>restore</mat-icon>  RESET GAME</button>
+  </div>
+  <br>
 
+  <div >
+    <button mat-raised-button color="primary" routerLink="/games"><mat-icon>sort</mat-icon>  GO TO SELECT GAME</button>
+  </div>
+  <br>
 
-<table class="center" cellspacing="0" cellpadding="0">
-  <tbody >
-  <tr *ngFor="let i = index  of [].constructor(MAX_ROWS)">
-    <td  [ngClass]="[getClass(i,j)]" *ngFor="let j = index of  [].constructor(MAX_COLUMN)">
-     <span class="material-icons" [ngStyle]="{'color':form[i][j].color, 'background-color': form[i][j].backcolor}"  (click)="informGame(i,j)" > {{icons[form[i][j].getId()]}} </span>
-    </td>
-
-  </tr>
-
-  </tbody>
-</table>
+  <div >
+    <button mat-raised-button color="accent" routerLink="/main"><mat-icon>home</mat-icon>  GO TO HOME</button>
+  </div>
+</div>

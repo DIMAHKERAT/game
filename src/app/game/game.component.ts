@@ -26,6 +26,8 @@ export class GameComponent implements OnInit {
   public propagate: boolean;
   public color: string;
   public timer: Timer;
+  public id: number;
+
   constructor(private gameService: GameService, public gameColor: GameColorService, private route: ActivatedRoute, private router: Router) {
 
 
@@ -35,22 +37,35 @@ export class GameComponent implements OnInit {
     this.timer = new Timer(0, 0, 0);
     this.timer.startTimer();
     this.route.params.subscribe(params => {
-      const gameParser = new GameParser(this.gameColor, this.gameService.getGame(params.id));
+      this. id = params.id;
+      const gameParser = new GameParser(this.gameColor, this.gameService.getGame(this.id));
       this.propagate = false;
       this.color = null;
+      this.clauses = [];
+      this.tempclauses = [];
       this.clauses = gameParser.getClauses();
       this.ATOUMS_COUNT = 0;
       this.clauses.forEach(e => this.ATOUMS_COUNT += +e.getAtomsCount());
       this.icons = GameIcons;
 
-      this.clauses.forEach(a => a.atoms.forEach(e => this.tempclauses.push(e)));
-
-
       this.MAX_COLUMN = Math.floor(Math.sqrt(this.ATOUMS_COUNT)) < 10 ? Math.floor(Math.sqrt(this.ATOUMS_COUNT)) : 10;
       this.MAX_ROWS = Math.ceil(this.ATOUMS_COUNT / this.MAX_COLUMN);
       console.log(this.tempclauses);
       console.log(this.ATOUMS_COUNT, this.MAX_COLUMN, this.MAX_ROWS);
+
       /*ston in clauses !!*/
+      if (this.MAX_COLUMN * this.MAX_ROWS > this.ATOUMS_COUNT){
+        const puller = this.MAX_COLUMN * this.MAX_ROWS - this.ATOUMS_COUNT;
+        let i: number;
+        const atoms: Atom[] = [];
+        const tempClause = new Clause(this.gameColor, 0, atoms);
+        for (i = 0; i < puller; i++){
+          atoms.push(new Atom(0, this.gameColor.neutColor, this.gameColor.neutBColor, tempClause));
+        }
+        this.clauses.push(tempClause);
+      }
+
+      this.clauses.forEach(a => a.atoms.forEach(e => this.tempclauses.push(e)));
       this.prepareForm();
     });
 
@@ -60,7 +75,7 @@ export class GameComponent implements OnInit {
   informGame(i, j) {
 
 
-    if (this.color !== null) {
+    if (this.color !== null){
       let rebackcoler = true;
       if (this.propagate) {
         this.clauses.forEach(e => e.setAtomColor(this.form[i][j].getId(), this.color));
@@ -69,8 +84,8 @@ export class GameComponent implements OnInit {
       }
       for (const clause of this.clauses){
          if (!clause.isOk(this.form[i][j].getId(), this.color)){
-           this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), this.gameColor.condColor));
-           this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), this.gameColor.condColor));
+           this.clauses.forEach(e => e.setAtomBackcolor(this.form[i][j].getId(), this.gameColor.conColor));
+           this.clauses.forEach(e => e.setAtomBackcolor(-this.form[i][j].getId(), this.gameColor.conColor));
            rebackcoler = false;
            break;
          }
@@ -91,7 +106,7 @@ export class GameComponent implements OnInit {
         return;
       }
     }
-    this.router.navigate(['/game-end', this.score,  this.timer.total]);
+    this.router.navigate(['/game-end', this.id, this.score,  this.timer.total]);
   }
   setPropagate(e) {
     this.propagate = e.checked;

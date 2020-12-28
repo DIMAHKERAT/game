@@ -28,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { SettingsComponent } from './settings/settings.component';
 import {GameColorService} from './game/services/game-color.service';
+import {ScoreService} from './game/services/score.service';
 
 
 export function firebaseAppNameFactory() {
@@ -82,7 +83,7 @@ export function firebaseAppNameFactory() {
     MatCardModule,
     MatFormFieldModule,
   ],
-  providers: [AngularFireAuthGuard, GameService, GameColorService],
+  providers: [AngularFireAuthGuard, GameService, GameColorService, ScoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

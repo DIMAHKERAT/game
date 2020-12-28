@@ -56,13 +56,13 @@ export class Clause {
     if (!this.atoms.some(atom => atom.color === this.gameColor.neutColor) ){
       if (this.atoms.some(atom => atom.color === this.gameColor.winColor)){
         this.atoms.forEach(e => {
-          if (e.backcolor !== this.gameColor.condColor){
+          if (e.backcolor !== this.gameColor.conColor){
             e.backcolor = this.gameColor.satColor;
           }
         });
       }else{
         this.atoms.forEach(e => {
-          if (e.backcolor !== this.gameColor.condColor){
+          if (e.backcolor !== this.gameColor.conColor){
             e.backcolor = this.gameColor.usatColor;
           }
         });
@@ -83,7 +83,7 @@ export class Clause {
   }
 
   public isSatisfied() {
-    return this.atoms.some(atom => atom.color === this.gameColor.neutColor || atom.backcolor === this.gameColor.condColor) ?
+    return this.atoms.some(atom => atom.color === this.gameColor.neutColor || atom.backcolor === this.gameColor.conColor) ?
       false : this.atoms.some(atom => atom.color === this.gameColor.winColor);
   }
 

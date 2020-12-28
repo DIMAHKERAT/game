@@ -7,7 +7,7 @@ export class Timer {
 
   private interval;
   public total = 0;
-  public time = 'Hours: 0, Minutes: 0, Seconds: 0';
+  public time = '0:0:0';
 
   startTimer() {
     this.interval = setInterval(() => {
@@ -21,7 +21,7 @@ export class Timer {
         this.minutes = 0;
         this.hours++;
       }
-      this.time = `Hours: ${this.hours} , Minutes: ${this.minutes}, Seconds: ${this.seconds}`;
+      this.time = `${this.hours}:${this.minutes}:${this.seconds}`;
     }, 1000);
   }
 

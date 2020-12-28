@@ -1,42 +1,27 @@
 <div class="home-container">
   <div class="home-content">
-
     <div class="mat-h1">
       <h1>THE BOX GAME</h1>
     </div>
     <div>
-      <a mat-fab color="primary"  routerLink="/games">
-        <mat-icon>play_arrow</mat-icon>
-      </a>
+      <button mat-raised-button color="accent"routerLink="/games"><mat-icon>play_arrow</mat-icon>  PLAY!</button>
     </div>
 
     <div>
-      <a mat-fab color="primary"  >
-        <mat-icon>group_work</mat-icon>
-      </a>
+      <button mat-raised-button color="primary"><mat-icon>group_work</mat-icon>  PLAY WITH OTHERS!</button>
     </div>
 
     <div >
-      <a mat-fab color="primary" routerLink="/settings">
-                <mat-icon>settings</mat-icon>
-      </a>
+      <button mat-raised-button color="accent" routerLink="/settings"><mat-icon>settings</mat-icon>  SETTINGS</button>
     </div>
 
     <div>
-      <a mat-fab color="primary"  >
-        <mat-icon> live_help</mat-icon>
-      </a>
+      <button mat-raised-button color="primary"routerLink="/about"><mat-icon>live_help</mat-icon>  ABOUT</button>
     </div>
+
     <div >
-      <a mat-fab color="primary" routerLink="/loggout">
-        <mat-icon>exit_to_app</mat-icon>
-      </a>
+      <button mat-raised-button color="accent" routerLink="/logout"><mat-icon>exit_to_app</mat-icon>  LOGOUT</button>
     </div>
   </div>
-
 </div>
-<!--<div class="center">-->
-<!--  <li *ngFor="let  game of GAMES">-->
-<!--    <button mat-button (click)="goToGame(game)"><h3>{{ game.level }}  {{ game.name }}</h3></button>-->
-<!--  </li>-->
-<!--</div>-->
+
