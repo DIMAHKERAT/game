@@ -1,0 +1,49 @@
+<div class="home-content">
+  <h1> Color  </h1>
+  <hr>
+  <hr>
+  <h2> Atoms </h2>
+  <div>
+    <h3>Winning:
+        <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempwinColor" [style.color]="tempwinColor">mood</span>
+    </h3>
+  </div>
+
+  <div>
+    <h3>Lossing:
+        <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="templosColor" [style.color]="templosColor">mood</span>
+    </h3>
+  </div>
+  <div>
+    <h3>Conflict:
+      <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempconColor" [style.background]="tempconColor" [style.color]="tempwinColor">mood</span>
+      <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempconColor" [style.background]="tempconColor" [style.color]="tempwinColor">mood_bad</span>
+    </h3>
+  </div>
+
+    <h2> Clauses </h2>
+    <div>
+      <h3>Satisfied:
+        <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempsatColor" [style.background]="tempsatColor" [style.color]="tempwinColor">mood</span>
+        <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempsatColor" [style.background]="tempsatColor" [style.color]="templosColor">mood_bad</span>
+      </h3>
+    </div>
+
+    <div>
+      <h3>Unsatisfied:
+      <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempusatColor" [style.background]="tempusatColor" [style.color]="templosColor">mood</span>
+        <span class="material-icons" [cpDisableInput]="true" cpAlphaChannel= "disabled" [(colorPicker)]="tempusatColor" [style.background]="tempusatColor" [style.color]="templosColor">favorite</span>
+      </h3>
+    </div>
+
+    <div >
+      <h3 [ngStyle]="{'color':'#990000'}" *ngIf="errorMessage">ERROR Colors can't be same!!</h3>
+      <button mat-raised-button color="accent" (click)="save()"><mat-icon>save</mat-icon>  SAVE AND RETURN TO HOME</button>
+    </div>
+  <hr>
+  <hr>
+   <div >
+    <button mat-raised-button color="primary" routerLink="/main"><mat-icon>home</mat-icon>  RETURN TO HOME WITHOUT SAVING</button>
+  </div>
+
+</div>
