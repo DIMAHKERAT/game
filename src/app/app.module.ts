@@ -29,6 +29,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { SettingsComponent } from './settings/settings.component';
 import {GameColorService} from './game/services/game-color.service';
 import {ScoreService} from './game/services/score.service';
+import {AboutComponent} from './about/about.component';
 
 
 export function firebaseAppNameFactory() {
@@ -43,7 +44,8 @@ export function firebaseAppNameFactory() {
     SelectGameComponent,
     MainMenuComponent,
     GameEndComponent,
-    SettingsComponent
+    SettingsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

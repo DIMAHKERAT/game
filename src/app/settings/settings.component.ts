@@ -28,6 +28,12 @@ export class SettingsComponent implements OnInit {
 
 
   save() {
+    if (this.tempwinColor === '#000000'){
+      this.tempwinColor = '#000001';
+    }
+    if (this.templosColor === '#000000'){
+      this.templosColor = '#000001';
+    }
     if (this.tempwinColor === this.templosColor ||
       this.tempsatColor === this.tempusatColor ||
       this.tempsatColor === this.tempconColor ||

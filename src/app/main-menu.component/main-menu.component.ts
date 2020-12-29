@@ -17,6 +17,7 @@ export class MainMenuComponent implements OnInit {
       this.scoreService.getUserScores(e.uid);
       this.gameService.getGames();
 
+
     });
   }
 
